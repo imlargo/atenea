@@ -1,7 +1,7 @@
 package core
 
 const (
-	BaseUrl       = "https://siamed.unal.edu.co/academia/apoyo-administrativo/ConsultaContenidos.do?action=Info&idAsignatura="
+	BaseUrl       = "https://siabog.unal.edu.co/academia/apoyo-administrativo/ConsultaContenidos.do?action=Info&idAsignatura="
 	NO_ENCONTRADO = ""
 )
 
@@ -15,6 +15,10 @@ func GetContenidoAsignatura(codigo string) *Asignatura {
 	contenedorContenido := contendores.Eq(3)
 
 	metadatos := getMetadatos(contenedorMetadatos)
+	if metadatos.Nombre == "" {
+		return nil
+	}
+
 	planes := getPlanes(contenedorPlanes)
 	contenido := getContenido(contenedorContenido)
 
