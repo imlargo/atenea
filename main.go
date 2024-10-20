@@ -1,11 +1,22 @@
 package main
 
 import (
+	"compress/gzip"
 	"encoding/json"
 	"extractor-contenido/core"
 	"fmt"
 	"net/http"
+	"strings"
 )
+
+type gzipResponseWriter struct {
+	http.ResponseWriter
+	Writer *gzip.Writer
+}
+
+func (w gzipResponseWriter) Write(b []byte) (int, error) {
+	return w.Writer.Write(b)
+}
 
 func contenidoHandler(w http.ResponseWriter, r *http.Request) {
 	// Lista de dominios permitidos
@@ -37,6 +48,14 @@ func contenidoHandler(w http.ResponseWriter, r *http.Request) {
 	// Manejar solicitudes OPTIONS
 	if r.Method == http.MethodOptions {
 		return
+	}
+
+	// Check if the client supports gzip encoding
+	if strings.Contains(r.Header.Get("Accept-Encoding"), "gzip") {
+		w.Header().Set("Content-Encoding", "gzip")
+		gz := gzip.NewWriter(w)
+		defer gz.Close()
+		w = gzipResponseWriter{ResponseWriter: w, Writer: gz}
 	}
 
 	codigo := r.URL.Query().Get("codigo")
