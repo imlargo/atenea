@@ -1,7 +1,7 @@
 package core
 
 const (
-	BaseUrl       = "https://siabog.unal.edu.co/academia/apoyo-administrativo/ConsultaContenidos.do?action=Info&idAsignatura="
+	BaseUrl       = "https://siapal.unal.edu.co/academia/apoyo-administrativo/ConsultaContenidos.do?action=Info&idAsignatura="
 	NO_ENCONTRADO = ""
 )
 
