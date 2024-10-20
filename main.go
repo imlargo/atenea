@@ -8,10 +8,31 @@ import (
 )
 
 func contenidoHandler(w http.ResponseWriter, r *http.Request) {
-	// Permitir cualquier origen
-	w.Header().Set("Access-Control-Allow-Origin", "*")
-	w.Header().Set("Access-Control-Allow-Methods", "GET, POST, OPTIONS")
-	w.Header().Set("Access-Control-Allow-Headers", "Content-Type")
+	// Lista de dominios permitidos
+	allowedOrigins := []string{
+		"http://localhost:5173",
+		"https://pegaso.imlargo.dev",
+		"https://pegaso-git-develop-imlargos-projects.vercel.app",
+		"https://sia-extractor-contenidos.onrender.com",
+	}
+
+	origin := r.Header.Get("Origin")
+	allowed := false
+	for _, o := range allowedOrigins {
+		if o == origin {
+			allowed = true
+			break
+		}
+	}
+
+	if allowed {
+		w.Header().Set("Access-Control-Allow-Origin", origin)
+		w.Header().Set("Access-Control-Allow-Methods", "GET, POST, OPTIONS")
+		w.Header().Set("Access-Control-Allow-Headers", "Content-Type")
+	} else {
+		http.Error(w, "CORS policy: This origin is not allowed", http.StatusForbidden)
+		return
+	}
 
 	// Manejar solicitudes OPTIONS
 	if r.Method == http.MethodOptions {
