@@ -12,6 +12,7 @@ func contenidoHandler(w http.ResponseWriter, r *http.Request) {
 		"http://localhost:5173",
 		"https://pegaso.imlargo.dev",
 		"https://pegaso-git-develop-imlargos-projects.vercel.app",
+		"https://sia-extractor-contenidos.onrender.com",
 	}
 
 	origin := r.Header.Get("Origin")
