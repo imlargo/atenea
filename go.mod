@@ -1,4 +1,4 @@
-module extractor-contenido
+module atenea
 
 go 1.23.0
 
