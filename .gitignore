@@ -1,0 +1,9 @@
+# Binaries for programs and plugins
+*.exe
+
+# IDE specific files
+.vscode
+.idea
+
+# .env file
+.env
