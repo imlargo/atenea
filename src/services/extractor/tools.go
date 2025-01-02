@@ -1,6 +1,7 @@
-package core
+package extractor
 
 import (
+	"atenea/src/models"
 	"regexp"
 	"strconv"
 	"strings"
@@ -15,9 +16,9 @@ func getDescripcion(selection *goquery.Selection) string {
 	return strings.TrimSpace(selection.Nodes[0].NextSibling.NextSibling.NextSibling.Data)
 }
 
-func getMetadatos(contenedor *goquery.Selection) *Metadatos {
+func getMetadatos(contenedor *goquery.Selection) *models.Metadatos {
 
-	metadatos := Metadatos{}
+	metadatos := models.Metadatos{}
 
 	contenedor.Find("h3").Each(func(i int, s *goquery.Selection) {
 
@@ -53,17 +54,17 @@ func getMetadatos(contenedor *goquery.Selection) *Metadatos {
 	return &metadatos
 }
 
-func getPlanes(contenedor *goquery.Selection) []*Plan {
+func getPlanes(contenedor *goquery.Selection) []*models.Plan {
 
 	rows := contenedor.Find("tr").Slice(1, goquery.ToEnd)
-	planes := make([]*Plan, rows.Length())
+	planes := make([]*models.Plan, rows.Length())
 
 	rows.Each(func(i int, s *goquery.Selection) {
 		tds := s.Find("td")
 		codigo := tds.Eq(0).Text()
 		plan := tds.Eq(1).Text()
 
-		planes[i] = &Plan{
+		planes[i] = &models.Plan{
 			Codigo: codigo,
 			Nombre: plan,
 		}

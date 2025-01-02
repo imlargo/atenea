@@ -1,11 +1,13 @@
-package core
+package extractor
+
+import "atenea/src/models"
 
 const (
 	BaseUrl       = "https://siapal.unal.edu.co/academia/apoyo-administrativo/ConsultaContenidos.do?action=Info&idAsignatura="
 	NO_ENCONTRADO = ""
 )
 
-func GetContenidoAsignatura(codigo string) *Asignatura {
+func GetContenidoAsignatura(codigo string) *models.Asignatura {
 
 	document := getDocumentFromUrl(getUrl(codigo))
 
@@ -22,7 +24,7 @@ func GetContenidoAsignatura(codigo string) *Asignatura {
 	planes := getPlanes(contenedorPlanes)
 	contenido := getContenido(contenedorContenido)
 
-	return &Asignatura{
+	return &models.Asignatura{
 		Codigo:              codigo,
 		Nombre:              metadatos.Nombre,
 		Uab:                 metadatos.Uab,
