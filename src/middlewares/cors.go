@@ -15,6 +15,8 @@ func Cors(next http.Handler) http.Handler {
 			"https://pegaso-git-develop-imlargos-projects.vercel.app": true,
 			"https://sia-extractor-contenidos.onrender.com":           true,
 			"https://salidas-campo.vercel.app":                        true,
+			"https://repo-contenidos-minas.vercel.app":                true,
+			"http://localhost:4173":                                   true,
 		}
 
 		origin := r.Header.Get("Origin")
