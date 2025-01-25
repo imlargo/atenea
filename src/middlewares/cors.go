@@ -17,6 +17,7 @@ func Cors(next http.Handler) http.Handler {
 			"https://salidas-campo.vercel.app":                        true,
 			"https://repo-contenidos-minas.vercel.app":                true,
 			"http://localhost:4173":                                   true,
+			"https://atenea-un.vercel.app":                            true,
 		}
 
 		origin := r.Header.Get("Origin")
