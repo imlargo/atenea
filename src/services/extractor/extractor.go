@@ -3,7 +3,7 @@ package extractor
 import "atenea/src/models"
 
 const (
-	BaseUrl       = "https://siapal.unal.edu.co/academia/apoyo-administrativo/ConsultaContenidos.do?action=Info&idAsignatura="
+	BaseUrl       = "https://siamed.unal.edu.co/academia/apoyo-administrativo/ConsultaContenidos.do?action=Info&idAsignatura="
 	NO_ENCONTRADO = ""
 )
 
