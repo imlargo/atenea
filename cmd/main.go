@@ -15,13 +15,8 @@ import (
 	ginSwagger "github.com/swaggo/gin-swagger"
 )
 
-var db int
-
 func init() {
 	config.LoadEnvVariables()
-	db = 1
-	// db = config.ConnectDB()
-	// migrations.AutoMigrateAll(db)
 }
 
 // @contact.name imlargo
@@ -39,7 +34,7 @@ func main() {
 	docs.SwaggerInfo.BasePath = "/v1"
 	docs.SwaggerInfo.Schemes = []string{"http"}
 
-	courseRepository := repositories.NewCourseRepository(db)
+	courseRepository := repositories.NewCourseRepository(1)
 	courseService := services.NewCourseService(courseRepository)
 	courseController := controllers.NewCourseController(courseService)
 
