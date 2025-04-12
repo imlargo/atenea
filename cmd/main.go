@@ -24,7 +24,7 @@ func init() {
 	// migrations.AutoMigrateAll(db)
 }
 
-// @contact.name Luiz Weitz
+// @contact.name imlargo
 // @contact.url http://www.swagger.io/support
 // @license.name MIT
 // @license.url http://www.apache.org/licenses/LICENSE-2.0.html
