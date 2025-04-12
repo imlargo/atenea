@@ -1,9 +1,12 @@
 package controllers
 
 import (
+	"os"
 	"strconv"
 
 	"github.com/gin-gonic/gin"
+	"github.com/imlargo/atenea/internal/atenea"
+	"github.com/imlargo/atenea/internal/env"
 	"github.com/imlargo/atenea/internal/models"
 	"github.com/imlargo/atenea/internal/responses"
 	"github.com/imlargo/atenea/internal/services"
@@ -61,18 +64,17 @@ func (u *CourseControllerImpl) GetAll(c *gin.Context) {
 // @Failure		500	{object}	models.Error	"Internal Server Error"
 func (u *CourseControllerImpl) GetById(c *gin.Context) {
 
-	courseID, errParse := strconv.Atoi(c.Param("id"))
+	courseID := c.Param("id")
 
-	if errParse != nil {
+	if courseID == "" {
 		responses.ErrorBadRequest(c, "ID invalid")
 		return
 	}
 
-	var course *models.Course
+	driver := atenea.NewAteneaService(os.Getenv(env.SIA_URL))
+	course, err := driver.GetCourse(courseID)
 
-	course, errGet := u.courseService.GetByID(courseID)
-
-	if errGet != nil {
+	if err != nil {
 		responses.ErrorInternalServer(c)
 		return
 	}
@@ -81,7 +83,6 @@ func (u *CourseControllerImpl) GetById(c *gin.Context) {
 		responses.Ok(c, course)
 		return
 	}
-
 }
 
 // @Summary		Create Course

@@ -39,6 +39,12 @@ func (d *DriverImpl) GetCourse(code string) (*models.Course, error) {
 		return nil, errors.New("failed to extract course information from the document")
 	}
 
+	if course.Nombre == "" {
+		return nil, errors.New("course not found")
+	}
+
+	course.Codigo = code
+
 	return course, nil
 }
 
@@ -111,7 +117,12 @@ func (d *DriverImpl) extractMetadata(section *goquery.Selection) (*CourseMetadat
 
 func (d *DriverImpl) extractCareers(section *goquery.Selection) []models.Plan {
 
-	rows := section.Find("tr").Slice(1, goquery.ToEnd)
+	rows := section.Find("tr")
+	if rows.Length() <= 1 {
+		return nil // No careers found, return an empty slice
+	}
+
+	rows = rows.Slice(1, goquery.ToEnd)
 	careers := make([]models.Plan, rows.Length())
 
 	rows.Each(func(i int, s *goquery.Selection) {
