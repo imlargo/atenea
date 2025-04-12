@@ -34,11 +34,11 @@ func (d *DriverImpl) GetCourse(code string) (*models.Course, error) {
 
 	course, err := d.getInfoFromDoc(doc)
 	if err != nil {
-		return nil, errDataExtractionFailed
+		return nil, ErrDataExtractionFailed
 	}
 
 	if course.Nombre == "" {
-		return nil, errCourseNotFound
+		return nil, ErrCourseNotFound
 	}
 
 	course.Codigo = code
@@ -54,7 +54,7 @@ func (d *DriverImpl) getInfoFromDoc(document *goquery.Document) (*models.Course,
 
 	metadata, err := d.extractMetadata(metadataSection)
 	if err != nil {
-		return nil, errDataExtractionFailed
+		return nil, ErrDataExtractionFailed
 	}
 
 	careers := d.extractCareers(careersSection)
@@ -149,18 +149,18 @@ func (d *DriverImpl) getCourseDocument(code string) (*goquery.Document, error) {
 
 	res, err := http.Get(url)
 	if err != nil {
-		return nil, errCourseNotFound
+		return nil, ErrCourseNotFound
 	}
 
 	defer res.Body.Close()
 
 	if res.StatusCode != http.StatusOK {
-		return nil, errCourseNotFound
+		return nil, ErrCourseNotFound
 	}
 
 	doc, err := goquery.NewDocumentFromReader(res.Body)
 	if err != nil {
-		return nil, errInternal
+		return nil, ErrInternal
 	}
 
 	return doc, nil

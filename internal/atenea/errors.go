@@ -3,8 +3,8 @@ package atenea
 import "errors"
 
 var (
-	errCourseNotFound       = errors.New("course not found")
-	errDataExtractionFailed = errors.New("failed to parse course data")
-	errInternal             = errors.New("an internal error occurred")
-	errUnknown              = errors.New("unknown error occurred")
+	ErrCourseNotFound       = errors.New("course not found")
+	ErrDataExtractionFailed = errors.New("failed to parse course data")
+	ErrInternal             = errors.New("an internal error occurred")
+	ErrUnknown              = errors.New("unknown error occurred")
 )

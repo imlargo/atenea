@@ -67,7 +67,7 @@ func (u *CourseControllerImpl) GetById(c *gin.Context) {
 	courseID := c.Param("id")
 
 	if courseID == "" {
-		responses.ErrorBadRequest(c, "ID invalid")
+		responses.ErrorBadRequest(c, "Invalid id")
 		return
 	}
 
@@ -75,7 +75,16 @@ func (u *CourseControllerImpl) GetById(c *gin.Context) {
 	course, err := driver.GetCourse(courseID)
 
 	if err != nil {
-		responses.ErrorInternalServer(c)
+		switch err {
+		case atenea.ErrCourseNotFound:
+			responses.ErrorNotFound(c, err.Error())
+		case atenea.ErrDataExtractionFailed:
+			responses.ErrorBadRequest(c, err.Error())
+		case atenea.ErrInternal:
+			responses.ErrorInternalServer(c)
+		default:
+			responses.ErrorInternalServer(c)
+		}
 		return
 	}
 
