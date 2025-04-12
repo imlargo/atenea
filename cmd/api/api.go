@@ -1,7 +1,6 @@
 package api
 
 import (
-	"log"
 
 	// This is required to generate swagger docs
 	"github.com/gin-gonic/gin"
@@ -44,10 +43,6 @@ func (app *Application) SetupDocs(router *gin.Engine) {
 	docs.SwaggerInfo.BasePath = "/v1"
 	docs.SwaggerInfo.Schemes = []string{"http"}
 
-	urlSwaggerJson := ginSwagger.URL("http://localhost:8080/swagger/doc.json")
-	router.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler, urlSwaggerJson))
-
-	if err := router.Run(":8080"); err != nil {
-		log.Fatalf("Failed to start server: %v", err)
-	}
+	urlSwaggerJson := ginSwagger.URL(app.Config.Addr)
+	router.GET("/docs/*any", ginSwagger.WrapHandler(swaggerFiles.Handler, urlSwaggerJson))
 }
