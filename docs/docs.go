@@ -39,13 +39,13 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/github_com_luizweitz_go-api_internal_models.SuccessList-github_com_luizweitz_go-api_internal_models_User"
+                            "$ref": "#/definitions/github_com_imlargo_go-api_internal_models.SuccessList-github_com_imlargo_go-api_internal_models_User"
                         }
                     },
                     "500": {
                         "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/github_com_luizweitz_go-api_internal_models.Error"
+                            "$ref": "#/definitions/github_com_imlargo_go-api_internal_models.Error"
                         }
                     }
                 }
@@ -69,7 +69,7 @@ const docTemplate = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/github_com_luizweitz_go-api_internal_models.User"
+                            "$ref": "#/definitions/github_com_imlargo_go-api_internal_models.User"
                         }
                     }
                 ],
@@ -77,31 +77,31 @@ const docTemplate = `{
                     "200": {
                         "description": "Updated",
                         "schema": {
-                            "$ref": "#/definitions/github_com_luizweitz_go-api_internal_models.SuccessData-github_com_luizweitz_go-api_internal_models_User"
+                            "$ref": "#/definitions/github_com_imlargo_go-api_internal_models.SuccessData-github_com_imlargo_go-api_internal_models_User"
                         }
                     },
                     "400": {
                         "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/github_com_luizweitz_go-api_internal_models.Error"
+                            "$ref": "#/definitions/github_com_imlargo_go-api_internal_models.Error"
                         }
                     },
                     "404": {
                         "description": "Not Found",
                         "schema": {
-                            "$ref": "#/definitions/github_com_luizweitz_go-api_internal_models.Error"
+                            "$ref": "#/definitions/github_com_imlargo_go-api_internal_models.Error"
                         }
                     },
                     "409": {
                         "description": "Error Conflict",
                         "schema": {
-                            "$ref": "#/definitions/github_com_luizweitz_go-api_internal_models.Error"
+                            "$ref": "#/definitions/github_com_imlargo_go-api_internal_models.Error"
                         }
                     },
                     "500": {
                         "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/github_com_luizweitz_go-api_internal_models.Error"
+                            "$ref": "#/definitions/github_com_imlargo_go-api_internal_models.Error"
                         }
                     }
                 }
@@ -125,7 +125,7 @@ const docTemplate = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/github_com_luizweitz_go-api_internal_models.User"
+                            "$ref": "#/definitions/github_com_imlargo_go-api_internal_models.User"
                         }
                     }
                 ],
@@ -133,25 +133,25 @@ const docTemplate = `{
                     "201": {
                         "description": "Created",
                         "schema": {
-                            "$ref": "#/definitions/github_com_luizweitz_go-api_internal_models.SuccessData-github_com_luizweitz_go-api_internal_models_User"
+                            "$ref": "#/definitions/github_com_imlargo_go-api_internal_models.SuccessData-github_com_imlargo_go-api_internal_models_User"
                         }
                     },
                     "400": {
                         "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/github_com_luizweitz_go-api_internal_models.Error"
+                            "$ref": "#/definitions/github_com_imlargo_go-api_internal_models.Error"
                         }
                     },
                     "409": {
                         "description": "Error Conflict",
                         "schema": {
-                            "$ref": "#/definitions/github_com_luizweitz_go-api_internal_models.Error"
+                            "$ref": "#/definitions/github_com_imlargo_go-api_internal_models.Error"
                         }
                     },
                     "500": {
                         "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/github_com_luizweitz_go-api_internal_models.Error"
+                            "$ref": "#/definitions/github_com_imlargo_go-api_internal_models.Error"
                         }
                     }
                 }
@@ -183,25 +183,25 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/github_com_luizweitz_go-api_internal_models.SuccessData-github_com_luizweitz_go-api_internal_models_User"
+                            "$ref": "#/definitions/github_com_imlargo_go-api_internal_models.SuccessData-github_com_imlargo_go-api_internal_models_User"
                         }
                     },
                     "400": {
                         "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/github_com_luizweitz_go-api_internal_models.Error"
+                            "$ref": "#/definitions/github_com_imlargo_go-api_internal_models.Error"
                         }
                     },
                     "404": {
                         "description": "Not Found",
                         "schema": {
-                            "$ref": "#/definitions/github_com_luizweitz_go-api_internal_models.Error"
+                            "$ref": "#/definitions/github_com_imlargo_go-api_internal_models.Error"
                         }
                     },
                     "500": {
                         "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/github_com_luizweitz_go-api_internal_models.Error"
+                            "$ref": "#/definitions/github_com_imlargo_go-api_internal_models.Error"
                         }
                     }
                 }
@@ -231,25 +231,25 @@ const docTemplate = `{
                     "200": {
                         "description": "Deleted",
                         "schema": {
-                            "$ref": "#/definitions/github_com_luizweitz_go-api_internal_models.Success"
+                            "$ref": "#/definitions/github_com_imlargo_go-api_internal_models.Success"
                         }
                     },
                     "400": {
                         "description": "Bed Request",
                         "schema": {
-                            "$ref": "#/definitions/github_com_luizweitz_go-api_internal_models.Error"
+                            "$ref": "#/definitions/github_com_imlargo_go-api_internal_models.Error"
                         }
                     },
                     "404": {
                         "description": "Not Found",
                         "schema": {
-                            "$ref": "#/definitions/github_com_luizweitz_go-api_internal_models.Error"
+                            "$ref": "#/definitions/github_com_imlargo_go-api_internal_models.Error"
                         }
                     },
                     "500": {
                         "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/github_com_luizweitz_go-api_internal_models.Error"
+                            "$ref": "#/definitions/github_com_imlargo_go-api_internal_models.Error"
                         }
                     }
                 }
@@ -257,7 +257,7 @@ const docTemplate = `{
         }
     },
     "definitions": {
-        "github_com_luizweitz_go-api_internal_models.Error": {
+        "github_com_imlargo_go-api_internal_models.Error": {
             "type": "object",
             "properties": {
                 "code": {
@@ -271,7 +271,7 @@ const docTemplate = `{
                 }
             }
         },
-        "github_com_luizweitz_go-api_internal_models.Success": {
+        "github_com_imlargo_go-api_internal_models.Success": {
             "type": "object",
             "properties": {
                 "code": {
@@ -282,21 +282,21 @@ const docTemplate = `{
                 }
             }
         },
-        "github_com_luizweitz_go-api_internal_models.SuccessData-github_com_luizweitz_go-api_internal_models_User": {
+        "github_com_imlargo_go-api_internal_models.SuccessData-github_com_imlargo_go-api_internal_models_User": {
             "type": "object",
             "properties": {
                 "code": {
                     "type": "integer"
                 },
                 "data": {
-                    "$ref": "#/definitions/github_com_luizweitz_go-api_internal_models.User"
+                    "$ref": "#/definitions/github_com_imlargo_go-api_internal_models.User"
                 },
                 "status": {
                     "type": "string"
                 }
             }
         },
-        "github_com_luizweitz_go-api_internal_models.SuccessList-github_com_luizweitz_go-api_internal_models_User": {
+        "github_com_imlargo_go-api_internal_models.SuccessList-github_com_imlargo_go-api_internal_models_User": {
             "type": "object",
             "properties": {
                 "code": {
@@ -305,7 +305,7 @@ const docTemplate = `{
                 "data": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/definitions/github_com_luizweitz_go-api_internal_models.User"
+                        "$ref": "#/definitions/github_com_imlargo_go-api_internal_models.User"
                     }
                 },
                 "status": {
@@ -313,7 +313,7 @@ const docTemplate = `{
                 }
             }
         },
-        "github_com_luizweitz_go-api_internal_models.User": {
+        "github_com_imlargo_go-api_internal_models.User": {
             "type": "object",
             "required": [
                 "age",

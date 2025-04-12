@@ -1,5 +1,5 @@
 definitions:
-  github_com_luizweitz_go-api_internal_models.Error:
+  github_com_imlargo_go-api_internal_models.Error:
     properties:
       code:
         type: integer
@@ -8,34 +8,34 @@ definitions:
       status:
         type: string
     type: object
-  github_com_luizweitz_go-api_internal_models.Success:
+  github_com_imlargo_go-api_internal_models.Success:
     properties:
       code:
         type: integer
       status:
         type: string
     type: object
-  github_com_luizweitz_go-api_internal_models.SuccessData-github_com_luizweitz_go-api_internal_models_User:
+  github_com_imlargo_go-api_internal_models.SuccessData-github_com_imlargo_go-api_internal_models_User:
     properties:
       code:
         type: integer
       data:
-        $ref: '#/definitions/github_com_luizweitz_go-api_internal_models.User'
+        $ref: '#/definitions/github_com_imlargo_go-api_internal_models.User'
       status:
         type: string
     type: object
-  github_com_luizweitz_go-api_internal_models.SuccessList-github_com_luizweitz_go-api_internal_models_User:
+  github_com_imlargo_go-api_internal_models.SuccessList-github_com_imlargo_go-api_internal_models_User:
     properties:
       code:
         type: integer
       data:
         items:
-          $ref: '#/definitions/github_com_luizweitz_go-api_internal_models.User'
+          $ref: '#/definitions/github_com_imlargo_go-api_internal_models.User'
         type: array
       status:
         type: string
     type: object
-  github_com_luizweitz_go-api_internal_models.User:
+  github_com_imlargo_go-api_internal_models.User:
     properties:
       age:
         type: integer
@@ -76,11 +76,11 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/github_com_luizweitz_go-api_internal_models.SuccessList-github_com_luizweitz_go-api_internal_models_User'
+            $ref: '#/definitions/github_com_imlargo_go-api_internal_models.SuccessList-github_com_imlargo_go-api_internal_models_User'
         "500":
           description: Internal Server Error
           schema:
-            $ref: '#/definitions/github_com_luizweitz_go-api_internal_models.Error'
+            $ref: '#/definitions/github_com_imlargo_go-api_internal_models.Error'
       summary: Search All Users
       tags:
       - users
@@ -94,26 +94,26 @@ paths:
         name: Input
         required: true
         schema:
-          $ref: '#/definitions/github_com_luizweitz_go-api_internal_models.User'
+          $ref: '#/definitions/github_com_imlargo_go-api_internal_models.User'
       produces:
       - application/json
       responses:
         "201":
           description: Created
           schema:
-            $ref: '#/definitions/github_com_luizweitz_go-api_internal_models.SuccessData-github_com_luizweitz_go-api_internal_models_User'
+            $ref: '#/definitions/github_com_imlargo_go-api_internal_models.SuccessData-github_com_imlargo_go-api_internal_models_User'
         "400":
           description: Bad Request
           schema:
-            $ref: '#/definitions/github_com_luizweitz_go-api_internal_models.Error'
+            $ref: '#/definitions/github_com_imlargo_go-api_internal_models.Error'
         "409":
           description: Error Conflict
           schema:
-            $ref: '#/definitions/github_com_luizweitz_go-api_internal_models.Error'
+            $ref: '#/definitions/github_com_imlargo_go-api_internal_models.Error'
         "500":
           description: Internal Server Error
           schema:
-            $ref: '#/definitions/github_com_luizweitz_go-api_internal_models.Error'
+            $ref: '#/definitions/github_com_imlargo_go-api_internal_models.Error'
       summary: Create User
       tags:
       - users
@@ -127,30 +127,30 @@ paths:
         name: Input
         required: true
         schema:
-          $ref: '#/definitions/github_com_luizweitz_go-api_internal_models.User'
+          $ref: '#/definitions/github_com_imlargo_go-api_internal_models.User'
       produces:
       - application/json
       responses:
         "200":
           description: Updated
           schema:
-            $ref: '#/definitions/github_com_luizweitz_go-api_internal_models.SuccessData-github_com_luizweitz_go-api_internal_models_User'
+            $ref: '#/definitions/github_com_imlargo_go-api_internal_models.SuccessData-github_com_imlargo_go-api_internal_models_User'
         "400":
           description: Bad Request
           schema:
-            $ref: '#/definitions/github_com_luizweitz_go-api_internal_models.Error'
+            $ref: '#/definitions/github_com_imlargo_go-api_internal_models.Error'
         "404":
           description: Not Found
           schema:
-            $ref: '#/definitions/github_com_luizweitz_go-api_internal_models.Error'
+            $ref: '#/definitions/github_com_imlargo_go-api_internal_models.Error'
         "409":
           description: Error Conflict
           schema:
-            $ref: '#/definitions/github_com_luizweitz_go-api_internal_models.Error'
+            $ref: '#/definitions/github_com_imlargo_go-api_internal_models.Error'
         "500":
           description: Internal Server Error
           schema:
-            $ref: '#/definitions/github_com_luizweitz_go-api_internal_models.Error'
+            $ref: '#/definitions/github_com_imlargo_go-api_internal_models.Error'
       summary: Update User By ID
       tags:
       - users
@@ -171,19 +171,19 @@ paths:
         "200":
           description: Deleted
           schema:
-            $ref: '#/definitions/github_com_luizweitz_go-api_internal_models.Success'
+            $ref: '#/definitions/github_com_imlargo_go-api_internal_models.Success'
         "400":
           description: Bed Request
           schema:
-            $ref: '#/definitions/github_com_luizweitz_go-api_internal_models.Error'
+            $ref: '#/definitions/github_com_imlargo_go-api_internal_models.Error'
         "404":
           description: Not Found
           schema:
-            $ref: '#/definitions/github_com_luizweitz_go-api_internal_models.Error'
+            $ref: '#/definitions/github_com_imlargo_go-api_internal_models.Error'
         "500":
           description: Internal Server Error
           schema:
-            $ref: '#/definitions/github_com_luizweitz_go-api_internal_models.Error'
+            $ref: '#/definitions/github_com_imlargo_go-api_internal_models.Error'
       summary: Delete User By ID
       tags:
       - users
@@ -203,19 +203,19 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/github_com_luizweitz_go-api_internal_models.SuccessData-github_com_luizweitz_go-api_internal_models_User'
+            $ref: '#/definitions/github_com_imlargo_go-api_internal_models.SuccessData-github_com_imlargo_go-api_internal_models_User'
         "400":
           description: Bad Request
           schema:
-            $ref: '#/definitions/github_com_luizweitz_go-api_internal_models.Error'
+            $ref: '#/definitions/github_com_imlargo_go-api_internal_models.Error'
         "404":
           description: Not Found
           schema:
-            $ref: '#/definitions/github_com_luizweitz_go-api_internal_models.Error'
+            $ref: '#/definitions/github_com_imlargo_go-api_internal_models.Error'
         "500":
           description: Internal Server Error
           schema:
-            $ref: '#/definitions/github_com_luizweitz_go-api_internal_models.Error'
+            $ref: '#/definitions/github_com_imlargo_go-api_internal_models.Error'
       summary: Search User By ID
       tags:
       - users
