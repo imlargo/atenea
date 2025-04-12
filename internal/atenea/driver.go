@@ -2,7 +2,6 @@ package atenea
 
 import (
 	"errors"
-	"log"
 	"net/http"
 	"regexp"
 	"strconv"
@@ -151,7 +150,7 @@ func (d *DriverImpl) getCourseDocument(code string) (*goquery.Document, error) {
 
 	res, err := http.Get(url)
 	if err != nil {
-		log.Fatal(err)
+		return nil, errors.New("Failed to get course page")
 	}
 
 	defer res.Body.Close()
