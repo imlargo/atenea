@@ -9,8 +9,7 @@ import (
 
 func LoadEnvVariables() {
 
-	envPath := "../.env"
-
+	envPath := ".env"
 	err := godotenv.Load(envPath)
 
 	if err != nil {
