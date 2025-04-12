@@ -23,3 +23,8 @@ func (atenea *AteneaService) GetCourse(code string) (*models.Course, error) {
 
 	return course, nil
 }
+
+func (atenea *AteneaService) IsCodeValid(code string) bool {
+	length := len(code)
+	return length > 3 && length < 15
+}

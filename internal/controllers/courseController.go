@@ -64,20 +64,26 @@ func (u *CourseControllerImpl) GetAll(c *gin.Context) {
 // @Failure		500	{object}	models.Error	"Internal Server Error"
 func (u *CourseControllerImpl) GetById(c *gin.Context) {
 
-	courseID := c.Param("id")
+	courseCode := c.Param("code")
 
-	if courseID == "" {
-		responses.ErrorBadRequest(c, "Invalid id")
+	if courseCode == "" {
+		responses.ErrorBadRequest(c, "Course code cannot be empty")
 		return
 	}
 
-	driver := atenea.NewAteneaService(os.Getenv(env.SIA_URL))
-	course, err := driver.GetCourse(courseID)
+	service := atenea.NewAteneaService(os.Getenv(env.SIA_URL))
+
+	if !service.IsCodeValid(courseCode) {
+		responses.ErrorBadRequest(c, "Course ID invalid")
+		return
+	}
+
+	course, err := service.GetCourse(courseCode)
 
 	if err != nil {
 		switch err {
 		case atenea.ErrCourseNotFound:
-			responses.ErrorNotFound(c, err.Error())
+			responses.ErrorNotFound(c, "course")
 		case atenea.ErrDataExtractionFailed:
 			responses.ErrorBadRequest(c, err.Error())
 		case atenea.ErrInternal:
