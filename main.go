@@ -19,10 +19,7 @@ func main() {
 
 	gin.SetMode(os.Getenv("GIN_MODE"))
 
-	config := api.Config{
-		Port:   os.Getenv(env.PORT),
-		ApiURL: os.Getenv(env.API_URL),
-	}
+	config := api.SetupConfig()
 
 	app := &api.Application{
 		Config: config,

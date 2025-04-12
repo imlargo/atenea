@@ -10,9 +10,11 @@ import (
 
 // Define enums para las variables de entorno
 const (
-	API_URL = "API_URL"
-	PORT    = "PORT"
-	SIA_URL = "SIA_URL"
+	API_URL                 = "API_URL"
+	PORT                    = "PORT"
+	SIA_URL                 = "SIA_URL"
+	RATE_LIMIT_MAX_REQUESTS = "RATE_LIMIT_MAX_REQUESTS"
+	RATE_LIMIT_TIMEFRAME    = "RATE_LIMIT_TIMEFRAME"
 )
 
 // Initialize loads environment variables from .env file
