@@ -46,3 +46,11 @@ func ErrorBadRequest(c *gin.Context, message string) {
 		Status:  "BAD_REQUEST",
 	})
 }
+
+func ErrorToManyRequests(c *gin.Context, message string) {
+	c.JSON(http.StatusTooManyRequests, models.Error{
+		Code:    http.StatusTooManyRequests,
+		Message: message,
+		Status:  "TO_MANY_REQUESTS",
+	})
+}

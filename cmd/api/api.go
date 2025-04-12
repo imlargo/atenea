@@ -9,6 +9,7 @@ import (
 	"github.com/imlargo/atenea/docs"
 	"github.com/imlargo/atenea/internal/controllers"
 	"github.com/imlargo/atenea/internal/middlewares"
+	"github.com/imlargo/atenea/internal/ratelimiter"
 	"github.com/imlargo/atenea/internal/repositories"
 	"github.com/imlargo/atenea/internal/services"
 	swaggerFiles "github.com/swaggo/files"
@@ -16,7 +17,8 @@ import (
 )
 
 type Application struct {
-	Config Config
+	Config      Config
+	RateLimiter ratelimiter.Limiter
 }
 
 func (app *Application) Mount() *gin.Engine {

@@ -7,6 +7,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/imlargo/atenea/cmd/api"
 	"github.com/imlargo/atenea/internal/env"
+	"github.com/imlargo/atenea/internal/ratelimiter"
 )
 
 // @contact.name imlargo
@@ -21,8 +22,11 @@ func main() {
 
 	config := api.SetupConfig()
 
+	rl := ratelimiter.NewTokenBucketLimiter(config.Ratelimiter)
+
 	app := &api.Application{
-		Config: config,
+		Config:      config,
+		RateLimiter: rl,
 	}
 
 	router := app.Mount()
