@@ -39,7 +39,7 @@ func (app *Application) SetupDocs(router *gin.Engine) {
 	docs.SwaggerInfo.Title = "Atenea API"
 	docs.SwaggerInfo.Description = "Your tool to find university course information quickly and easily."
 	docs.SwaggerInfo.Version = "1.0"
-	docs.SwaggerInfo.Host = app.Config.ApiURL
+	docs.SwaggerInfo.Host = "localhost:8080"
 	docs.SwaggerInfo.BasePath = "/v1"
 	docs.SwaggerInfo.Schemes = []string{"http"}
 
