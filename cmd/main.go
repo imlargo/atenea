@@ -39,9 +39,9 @@ func main() {
 	docs.SwaggerInfo.BasePath = "/v1"
 	docs.SwaggerInfo.Schemes = []string{"http"}
 
-	userRepository := repositories.NewCourseRepository(db)
-	userService := services.NewCourseService(userRepository)
-	userController := controllers.NewCourseController(userService)
+	courseRepository := repositories.NewCourseRepository(db)
+	courseService := services.NewCourseService(courseRepository)
+	courseController := controllers.NewCourseController(courseService)
 
 	router := gin.Default()
 
@@ -49,11 +49,11 @@ func main() {
 
 	v1 := router.Group("/v1")
 
-	v1.POST("/users", userController.Create)
-	v1.PUT("/users", userController.Update)
-	v1.GET("/users", userController.GetAll)
-	v1.GET("/users/:id", userController.GetById)
-	v1.DELETE("/users/:id", userController.Delete)
+	v1.POST("/courses", courseController.Create)
+	v1.PUT("/courses", courseController.Update)
+	v1.GET("/courses", courseController.GetAll)
+	v1.GET("/courses/:id", courseController.GetById)
+	v1.DELETE("/courses/:id", courseController.Delete)
 
 	urlSwaggerJson := ginSwagger.URL("http://localhost:8080/swagger/doc.json")
 	router.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler, urlSwaggerJson))
