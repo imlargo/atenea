@@ -3,6 +3,8 @@ package api
 import (
 
 	// This is required to generate swagger docs
+	"strings"
+
 	"github.com/gin-gonic/gin"
 	"github.com/imlargo/atenea/docs"
 	"github.com/imlargo/atenea/internal/controllers"
@@ -36,10 +38,13 @@ func (app *Application) Mount() *gin.Engine {
 }
 
 func (app *Application) SetupDocs(router *gin.Engine) {
+
+	host := strings.TrimPrefix(strings.TrimPrefix(app.Config.ApiURL, "http://"), "https://") + ":" + app.Config.Port
+
 	docs.SwaggerInfo.Title = "Atenea API"
 	docs.SwaggerInfo.Description = "Your tool to find university course information quickly and easily."
 	docs.SwaggerInfo.Version = "1.0"
-	docs.SwaggerInfo.Host = "localhost:8080"
+	docs.SwaggerInfo.Host = host
 	docs.SwaggerInfo.BasePath = "/v1"
 	docs.SwaggerInfo.Schemes = []string{"http"}
 
