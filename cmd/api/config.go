@@ -1,7 +1,6 @@
 package api
 
 type Config struct {
-	Addr   string
-	Env    string
+	Port   string
 	ApiURL string
 }

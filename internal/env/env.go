@@ -8,6 +8,12 @@ import (
 	"github.com/joho/godotenv"
 )
 
+// Define enums para las variables de entorno
+const (
+	API_URL = "BASE_URL"
+	PORT    = "PORT"
+)
+
 // Initialize loads environment variables from .env file
 func Initialize() error {
 	// Load .env file if it exists
@@ -16,11 +22,7 @@ func Initialize() error {
 	}
 
 	// Validate required environment variables
-	requiredEnvVars := []string{
-		// Add your required env variables here
-		// Example: "DATABASE_URL",
-		// Example: "API_KEY",
-	}
+	requiredEnvVars := []string{API_URL, PORT}
 
 	for _, envVar := range requiredEnvVars {
 		if os.Getenv(envVar) == "" {

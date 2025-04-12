@@ -20,8 +20,8 @@ func main() {
 	gin.SetMode(os.Getenv("GIN_MODE"))
 
 	config := api.Config{
-		Addr:   ":8080",
-		ApiURL: "http://localhost:8080",
+		Port:   os.Getenv(env.PORT),
+		ApiURL: os.Getenv(env.API_URL),
 	}
 
 	app := &api.Application{
@@ -32,7 +32,7 @@ func main() {
 
 	app.SetupDocs(router)
 
-	if err := router.Run(":8080"); err != nil {
+	if err := router.Run(":" + app.Config.Port); err != nil {
 		log.Fatalf("Failed to start server: %v", err)
 	}
 }
