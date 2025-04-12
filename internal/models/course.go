@@ -1,15 +1,23 @@
 package models
 
-import (
-	"time"
-)
-
 type Course struct {
-	ID        int       `json:"id"`
-	Name      string    `binding:"required" json:"name"`
-	Email     string    `gorm:"unique" binding:"required" json:"email"`
-	Age       uint8     `binding:"required" json:"age"`
-	City      *string   `json:"city"` // can be null
-	CreatedAt time.Time `json:"createdAt"`
-	UpdatedAt time.Time `json:"updatedAt"`
+	ID                  int    `json:"id"`
+	Codigo              string `json:"codigo"`
+	Nombre              string `json:"nombre"`
+	Uab                 string `json:"uab"`
+	Vigente             bool   `json:"vigente"`
+	HorasPresenciales   int    `json:"horasPresenciales"`
+	HorasNoPresenciales int    `json:"horasNoPresenciales"`
+	Creditos            int    `json:"creditos"`
+	Validable           bool   `json:"validable"`
+	Electiva            bool   `json:"electiva"`
+	Descripcion         string `json:"descripcion"`
+	Contenido           string `json:"contenido"`
+	PlanesRelacionados  []Plan `json:"planes_relacionados"`
+}
+
+type Plan struct {
+	ID     int    `json:"id"`
+	Codigo string `json:"codigo"`
+	Nombre string `json:"nombre"`
 }
