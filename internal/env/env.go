@@ -10,8 +10,9 @@ import (
 
 // Define enums para las variables de entorno
 const (
-	API_URL = "BASE_URL"
+	API_URL = "API_URL"
 	PORT    = "PORT"
+	SIA_URL = "SIA_URL"
 )
 
 // Initialize loads environment variables from .env file
@@ -22,7 +23,7 @@ func Initialize() error {
 	}
 
 	// Validate required environment variables
-	requiredEnvVars := []string{API_URL, PORT}
+	requiredEnvVars := []string{API_URL, PORT, SIA_URL}
 
 	for _, envVar := range requiredEnvVars {
 		if os.Getenv(envVar) == "" {
