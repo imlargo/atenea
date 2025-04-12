@@ -51,13 +51,13 @@ func (u *CourseControllerImpl) GetAll(c *gin.Context) {
 
 }
 
-// @Summary		Search Course By ID
-// @Router			/courses/{id} [get]
-// @Description	Get Course By ID
+// @Summary		Search Course By Code
+// @Router			/courses/{code} [get]
+// @Description	Get Course By Code
 // @Tags			courses
 // @Accept			json
 // @Produce		json
-// @Param			id	path		string	true	"Course ID"
+// @Param			code	path		string	true	"Course Code"
 // @Success		200	{object}	models.SuccessData[models.Course] "OK"
 // @Failure		400	{object}	models.Error	"Bad Request"
 // @Failure		404	{object}	models.Error	"Not Found"

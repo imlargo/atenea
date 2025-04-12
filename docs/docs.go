@@ -157,9 +157,9 @@ const docTemplate = `{
                 }
             }
         },
-        "/courses/{id}": {
+        "/courses/{code}": {
             "get": {
-                "description": "Get Course By ID",
+                "description": "Get Course By Code",
                 "consumes": [
                     "application/json"
                 ],
@@ -169,12 +169,12 @@ const docTemplate = `{
                 "tags": [
                     "courses"
                 ],
-                "summary": "Search Course By ID",
+                "summary": "Search Course By Code",
                 "parameters": [
                     {
                         "type": "string",
-                        "description": "Course ID",
-                        "name": "id",
+                        "description": "Course Code",
+                        "name": "code",
                         "in": "path",
                         "required": true
                     }
@@ -205,7 +205,9 @@ const docTemplate = `{
                         }
                     }
                 }
-            },
+            }
+        },
+        "/courses/{id}": {
             "delete": {
                 "description": "Delete Course By ID",
                 "consumes": [

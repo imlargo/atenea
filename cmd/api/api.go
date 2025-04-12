@@ -31,7 +31,7 @@ func (app *Application) Mount() *gin.Engine {
 	v1.POST("/courses", courseController.Create)
 	v1.PUT("/courses", courseController.Update)
 	v1.GET("/courses", courseController.GetAll)
-	v1.GET("/courses/:id", courseController.GetById)
+	v1.GET("/courses/:code", courseController.GetById)
 	v1.DELETE("/courses/:id", courseController.Delete)
 
 	return router

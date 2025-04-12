@@ -172,6 +172,39 @@ paths:
       summary: Update Course By ID
       tags:
       - courses
+  /courses/{code}:
+    get:
+      consumes:
+      - application/json
+      description: Get Course By Code
+      parameters:
+      - description: Course Code
+        in: path
+        name: code
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.SuccessData-models_Course'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.Error'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/models.Error'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.Error'
+      summary: Search Course By Code
+      tags:
+      - courses
   /courses/{id}:
     delete:
       consumes:
@@ -203,38 +236,6 @@ paths:
           schema:
             $ref: '#/definitions/models.Error'
       summary: Delete Course By ID
-      tags:
-      - courses
-    get:
-      consumes:
-      - application/json
-      description: Get Course By ID
-      parameters:
-      - description: Course ID
-        in: path
-        name: id
-        required: true
-        type: string
-      produces:
-      - application/json
-      responses:
-        "200":
-          description: OK
-          schema:
-            $ref: '#/definitions/models.SuccessData-models_Course'
-        "400":
-          description: Bad Request
-          schema:
-            $ref: '#/definitions/models.Error'
-        "404":
-          description: Not Found
-          schema:
-            $ref: '#/definitions/models.Error'
-        "500":
-          description: Internal Server Error
-          schema:
-            $ref: '#/definitions/models.Error'
-      summary: Search Course By ID
       tags:
       - courses
 swagger: "2.0"
