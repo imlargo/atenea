@@ -43,6 +43,7 @@ func (app *Application) SetupDocs(router *gin.Engine) {
 	docs.SwaggerInfo.BasePath = "/v1"
 	docs.SwaggerInfo.Schemes = []string{"http"}
 
-	urlSwaggerJson := ginSwagger.URL(app.Config.Addr)
+	schemaUrl := app.Config.ApiURL + "/docs/doc.json"
+	urlSwaggerJson := ginSwagger.URL(schemaUrl)
 	router.GET("/docs/*any", ginSwagger.WrapHandler(swaggerFiles.Handler, urlSwaggerJson))
 }
