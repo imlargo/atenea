@@ -1,7 +1,6 @@
 package atenea
 
 import (
-	"errors"
 	"net/http"
 	"regexp"
 	"strconv"
@@ -35,11 +34,11 @@ func (d *DriverImpl) GetCourse(code string) (*models.Course, error) {
 
 	course, err := d.getInfoFromDoc(doc)
 	if err != nil {
-		return nil, errors.New("failed to extract course information from the document")
+		return nil, errDataExtractionFailed
 	}
 
 	if course.Nombre == "" {
-		return nil, errors.New("course not found")
+		return nil, errCourseNotFound
 	}
 
 	course.Codigo = code
@@ -55,7 +54,7 @@ func (d *DriverImpl) getInfoFromDoc(document *goquery.Document) (*models.Course,
 
 	metadata, err := d.extractMetadata(metadataSection)
 	if err != nil {
-		return nil, errors.New("failed to extract metadata from the document")
+		return nil, errDataExtractionFailed
 	}
 
 	careers := d.extractCareers(careersSection)
@@ -150,18 +149,18 @@ func (d *DriverImpl) getCourseDocument(code string) (*goquery.Document, error) {
 
 	res, err := http.Get(url)
 	if err != nil {
-		return nil, errors.New("Failed to get course page")
+		return nil, errCourseNotFound
 	}
 
 	defer res.Body.Close()
 
 	if res.StatusCode != http.StatusOK {
-		return nil, errors.New("Failed to get course page")
+		return nil, errCourseNotFound
 	}
 
 	doc, err := goquery.NewDocumentFromReader(res.Body)
 	if err != nil {
-		return nil, err
+		return nil, errInternal
 	}
 
 	return doc, nil
