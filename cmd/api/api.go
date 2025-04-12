@@ -4,7 +4,7 @@ import (
 
 	// This is required to generate swagger docs
 	"github.com/gin-gonic/gin"
-	"github.com/imlargo/atenea/cmd/docs"
+	"github.com/imlargo/atenea/docs"
 	"github.com/imlargo/atenea/internal/controllers"
 	"github.com/imlargo/atenea/internal/middlewares"
 	"github.com/imlargo/atenea/internal/repositories"
