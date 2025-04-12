@@ -8,6 +8,7 @@ import (
 type CourseService interface {
 	GetAll() ([]*models.Course, error)
 	GetByID(id int) (*models.Course, error)
+	GetByCode(code string) (*models.Course, error)
 	Create(user *models.Course) (*models.Course, error)
 	Update(user *models.Course) error
 	Delete(id int) error
@@ -35,6 +36,10 @@ func (u *CourseServiceImpl) GetAll() ([]*models.Course, error) {
 
 func (u *CourseServiceImpl) GetByID(id int) (*models.Course, error) {
 	return u.courseRepository.GetByID(id)
+}
+
+func (u *CourseServiceImpl) GetByCode(code string) (*models.Course, error) {
+	return nil, nil
 }
 
 func (u *CourseServiceImpl) Update(user *models.Course) error {
