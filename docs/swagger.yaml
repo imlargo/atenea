@@ -1,3 +1,80 @@
+definitions:
+  models.Course:
+    properties:
+      codigo:
+        type: string
+      contenido:
+        type: string
+      creditos:
+        type: integer
+      descripcion:
+        type: string
+      electiva:
+        type: boolean
+      horasNoPresenciales:
+        type: integer
+      horasPresenciales:
+        type: integer
+      id:
+        type: integer
+      nombre:
+        type: string
+      planes_relacionados:
+        items:
+          $ref: '#/definitions/models.Plan'
+        type: array
+      uab:
+        type: string
+      validable:
+        type: boolean
+      vigente:
+        type: boolean
+    type: object
+  models.Error:
+    properties:
+      code:
+        type: integer
+      message:
+        type: string
+      status:
+        type: string
+    type: object
+  models.Plan:
+    properties:
+      codigo:
+        type: string
+      id:
+        type: integer
+      nombre:
+        type: string
+    type: object
+  models.Success:
+    properties:
+      code:
+        type: integer
+      status:
+        type: string
+    type: object
+  models.SuccessData-models_Course:
+    properties:
+      code:
+        type: integer
+      data:
+        $ref: '#/definitions/models.Course'
+      status:
+        type: string
+    type: object
+  models.SuccessList-models_Course:
+    properties:
+      code:
+        type: integer
+      data:
+        items:
+          $ref: '#/definitions/models.Course'
+        type: array
+      status:
+        type: string
+    type: object
 info:
   contact:
     name: imlargo
@@ -5,5 +82,159 @@ info:
   license:
     name: MIT
     url: http://www.apache.org/licenses/LICENSE-2.0.html
-paths: {}
+paths:
+  /courses:
+    get:
+      consumes:
+      - application/json
+      description: Search All Courses
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.SuccessList-models_Course'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.Error'
+      summary: Search All Courses
+      tags:
+      - courses
+    post:
+      consumes:
+      - application/json
+      description: Create Course With The Given Input Data
+      parameters:
+      - description: Create course object
+        in: body
+        name: Input
+        required: true
+        schema:
+          $ref: '#/definitions/models.Course'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/models.SuccessData-models_Course'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.Error'
+        "409":
+          description: Error Conflict
+          schema:
+            $ref: '#/definitions/models.Error'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.Error'
+      summary: Create Course
+      tags:
+      - courses
+    put:
+      consumes:
+      - application/json
+      description: Update Data Course By ID With The Given Input Data
+      parameters:
+      - description: Update course object
+        in: body
+        name: Input
+        required: true
+        schema:
+          $ref: '#/definitions/models.Course'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Updated
+          schema:
+            $ref: '#/definitions/models.SuccessData-models_Course'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.Error'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/models.Error'
+        "409":
+          description: Error Conflict
+          schema:
+            $ref: '#/definitions/models.Error'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.Error'
+      summary: Update Course By ID
+      tags:
+      - courses
+  /courses/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: Delete Course By ID
+      parameters:
+      - description: Course ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Deleted
+          schema:
+            $ref: '#/definitions/models.Success'
+        "400":
+          description: Bed Request
+          schema:
+            $ref: '#/definitions/models.Error'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/models.Error'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.Error'
+      summary: Delete Course By ID
+      tags:
+      - courses
+    get:
+      consumes:
+      - application/json
+      description: Get Course By ID
+      parameters:
+      - description: Course ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.SuccessData-models_Course'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.Error'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/models.Error'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.Error'
+      summary: Search Course By ID
+      tags:
+      - courses
 swagger: "2.0"
