@@ -43,11 +43,9 @@ func main() {
 	userService := services.NewCourseService(userRepository)
 	userController := controllers.NewCourseController(userService)
 
-	corsMiddleware := middlewares.NewCorsMiddleware()
-
 	router := gin.Default()
 
-	router.Use(corsMiddleware.CheckCors())
+	router.Use(middlewares.NewCorsMiddleware())
 
 	v1 := router.Group("/v1")
 
