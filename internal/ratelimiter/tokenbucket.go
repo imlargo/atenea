@@ -25,6 +25,8 @@ func NewTokenBucketLimiter(cfg Config) *TokenBucketLimiter {
 		entries: make(map[string]*LimiterEntry),
 	}
 
+	go rl.cleanUpEntries()
+
 	return rl
 }
 
