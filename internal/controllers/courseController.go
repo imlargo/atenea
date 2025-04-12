@@ -15,7 +15,6 @@ import (
 type CourseController interface {
 	GetAll(c *gin.Context)
 	GetById(c *gin.Context)
-	GetByCode(c *gin.Context)
 	Create(c *gin.Context)
 	Update(c *gin.Context)
 	Delete(c *gin.Context)
@@ -50,55 +49,6 @@ func (u *CourseControllerImpl) GetAll(c *gin.Context) {
 
 	responses.List(c, courses)
 
-}
-
-// @Summary		Search Course By ID
-// @Router			/courses/{id} [get]
-// @Description	Get Course By ID
-// @Tags			courses
-// @Accept			json
-// @Produce		json
-// @Param			id	path		string	true	"Course ID"
-// @Success		200	{object}	models.SuccessData[models.Course] "OK"
-// @Failure		400	{object}	models.Error	"Bad Request"
-// @Failure		404	{object}	models.Error	"Not Found"
-// @Failure		500	{object}	models.Error	"Internal Server Error"
-func (u *CourseControllerImpl) GetByCode(c *gin.Context) {
-
-	courseCode := c.Param("code")
-
-	if courseCode == "" {
-		responses.ErrorBadRequest(c, "Course code cannot be empty")
-		return
-	}
-
-	service := atenea.NewAteneaService(os.Getenv(env.SIA_URL))
-
-	if !service.IsCodeValid(courseCode) {
-		responses.ErrorBadRequest(c, "Course ID invalid")
-		return
-	}
-
-	course, err := service.GetCourse(courseCode)
-
-	if err != nil {
-		switch err {
-		case atenea.ErrCourseNotFound:
-			responses.ErrorNotFound(c, "course")
-		case atenea.ErrDataExtractionFailed:
-			responses.ErrorBadRequest(c, err.Error())
-		case atenea.ErrInternal:
-			responses.ErrorInternalServer(c)
-		default:
-			responses.ErrorInternalServer(c)
-		}
-		return
-	}
-
-	if !c.IsAborted() {
-		responses.Ok(c, course)
-		return
-	}
 }
 
 // @Summary		Search Course By ID
