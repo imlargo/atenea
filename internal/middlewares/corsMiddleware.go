@@ -1,23 +1,39 @@
 package middlewares
 
 import (
-	"time"
+	"net/http"
 
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 )
 
 func NewCorsMiddleware() gin.HandlerFunc {
+
+	allowedOrigins := []string{
+		"https://atenea-4v0s.onrender.com",
+		"http://localhost:8080",
+		"http://localhost:5173",
+		"https://pegaso.imlargo.dev",
+		"https://pegaso-git-develop-imlargos-projects.vercel.app",
+		"https://sia-extractor-contenidos.onrender.com",
+		"https://salidas-campo.vercel.app",
+		"https://repo-contenidos-minas.vercel.app",
+		"http://localhost:4173",
+		"https://atenea-un.vercel.app",
+	}
+
 	config := cors.Config{
-		AllowOrigins:     []string{"https://foo.com"},
-		AllowMethods:     []string{"PUT", "PATCH"},
-		AllowHeaders:     []string{"Origin"},
-		ExposeHeaders:    []string{"Content-Length"},
-		AllowCredentials: true,
-		AllowOriginFunc: func(origin string) bool {
-			return origin == "https://github.com"
+		AllowOrigins: allowedOrigins,
+		AllowMethods: []string{
+			http.MethodGet,
+			http.MethodPost,
+			http.MethodPut,
+			http.MethodPatch,
+			http.MethodDelete,
+			http.MethodHead,
+			http.MethodOptions,
 		},
-		MaxAge: 12 * time.Hour,
+		AllowCredentials: true,
 	}
 
 	return cors.New(config)
