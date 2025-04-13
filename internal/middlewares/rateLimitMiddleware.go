@@ -13,11 +13,9 @@ func RateLimiterMiddleware(rl ratelimiter.Limiter, cfg ratelimiter.Config) gin.H
 		if cfg.Enabled {
 
 			ip := ctx.ClientIP()
-			println("Ip: ", ip)
-
-			if allow, retryAfter := rl.Allow(ip); !allow {
+			allow, retryAfter := rl.Allow(ip)
+			if !allow {
 				message := "Rate limit exceeded. Try again in " + fmt.Sprintf("%.2f", retryAfter)
-				println("Rate limiter error")
 				responses.ErrorToManyRequests(ctx, message)
 				return
 			}

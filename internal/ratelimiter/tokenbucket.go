@@ -49,7 +49,6 @@ func (rl *TokenBucketLimiter) GetEntry(key string) *LimiterEntry {
 
 	entry := rl.entries[key]
 	entry.LastSeen = time.Now()
-	rl.Lock()
 
 	return entry
 }
