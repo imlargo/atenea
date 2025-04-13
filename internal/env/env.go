@@ -1,7 +1,6 @@
 package env
 
 import (
-	"errors"
 	"fmt"
 	"os"
 
@@ -21,7 +20,7 @@ const (
 func Initialize() error {
 	// Load .env file if it exists
 	if err := godotenv.Load(); err != nil {
-		return errors.New("Fatal error: .env file not found")
+		return err
 	}
 
 	// Validate required environment variables
