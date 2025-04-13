@@ -3,6 +3,7 @@ package main
 import (
 	"log"
 	"os"
+	"strconv"
 
 	"github.com/gin-gonic/gin"
 	"github.com/imlargo/atenea/cmd/api"
@@ -16,11 +17,19 @@ import (
 // @license.url http://www.apache.org/licenses/LICENSE-2.0.html
 func main() {
 
-	env.Initialize()
+	errEnv := env.Initialize()
+	if errEnv != nil {
+		log.Println(errEnv.Error())
+		return
+	}
 
 	gin.SetMode(os.Getenv("GIN_MODE"))
 
 	config := api.SetupConfig()
+
+	if config.Ratelimiter.Enabled {
+		log.Printf("Initializing rate limiter with config: %s request every %.2f seconds", strconv.Itoa(config.Ratelimiter.RequestsPerTimeFrame), config.Ratelimiter.TimeFrame.Seconds())
+	}
 
 	rl := ratelimiter.NewTokenBucketLimiter(config.Ratelimiter)
 

@@ -1,8 +1,8 @@
 package env
 
 import (
+	"errors"
 	"fmt"
-	"log"
 	"os"
 
 	"github.com/joho/godotenv"
@@ -21,7 +21,7 @@ const (
 func Initialize() error {
 	// Load .env file if it exists
 	if err := godotenv.Load(); err != nil {
-		log.Printf("Warning: .env file not found")
+		return errors.New("Fatal error: .env file not found")
 	}
 
 	// Validate required environment variables
