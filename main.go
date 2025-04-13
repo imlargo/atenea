@@ -12,7 +12,7 @@ import (
 )
 
 // @contact.name imlargo
-// @contact.url imlargo.dev
+// @contact.url https://imlargo.dev
 // @license.name MIT
 // @license.url http://www.apache.org/licenses/LICENSE-2.0.html
 func main() {

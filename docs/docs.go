@@ -11,7 +11,7 @@ const docTemplate = `{
         "title": "{{.Title}}",
         "contact": {
             "name": "imlargo",
-            "url": "imlargo.dev"
+            "url": "https://imlargo.dev"
         },
         "license": {
             "name": "MIT",
