@@ -17,6 +17,7 @@ func RateLimiterMiddleware(rl ratelimiter.Limiter, cfg ratelimiter.Config) gin.H
 			if !allow {
 				message := "Rate limit exceeded. Try again in " + fmt.Sprintf("%.2f", retryAfter)
 				responses.ErrorToManyRequests(ctx, message)
+				ctx.Abort()
 				return
 			}
 		}
