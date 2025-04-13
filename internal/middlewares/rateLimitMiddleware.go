@@ -9,18 +9,20 @@ import (
 )
 
 func RateLimiterMiddleware(rl ratelimiter.Limiter, cfg ratelimiter.Config) gin.HandlerFunc {
-	return func(c *gin.Context) {
+	return func(ctx *gin.Context) {
 		if cfg.Enabled {
 
-			ip := c.ClientIP()
+			ip := ctx.ClientIP()
+			println("Ip: ", ip)
 
 			if allow, retryAfter := rl.Allow(ip); !allow {
 				message := "Rate limit exceeded. Try again in " + fmt.Sprintf("%.2f", retryAfter)
-				responses.ErrorToManyRequests(c, message)
+				println("Rate limiter error")
+				responses.ErrorToManyRequests(ctx, message)
 				return
 			}
 		}
 
-		c.Next()
+		ctx.Next()
 	}
 }

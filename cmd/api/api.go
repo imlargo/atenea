@@ -28,6 +28,7 @@ func (app *Application) Mount() *gin.Engine {
 
 	router := gin.Default()
 	router.Use(middlewares.NewCorsMiddleware())
+	router.Use(middlewares.RateLimiterMiddleware(app.RateLimiter, app.Config.Ratelimiter))
 
 	v1 := router.Group("/v1")
 	v1.POST("/courses", courseController.Create)
