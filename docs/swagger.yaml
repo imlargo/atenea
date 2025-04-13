@@ -78,7 +78,7 @@ definitions:
 info:
   contact:
     name: imlargo
-    url: http://www.swagger.io/support
+    url: imlargo.dev
   license:
     name: MIT
     url: http://www.apache.org/licenses/LICENSE-2.0.html

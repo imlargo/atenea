@@ -11,7 +11,7 @@ const docTemplate = `{
         "title": "{{.Title}}",
         "contact": {
             "name": "imlargo",
-            "url": "http://www.swagger.io/support"
+            "url": "imlargo.dev"
         },
         "license": {
             "name": "MIT",
